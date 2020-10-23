@@ -46,3 +46,19 @@ def speak(text):
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait()
+
+def get_audio():
+    recognizer = sr.Recognizer()
+    said = ''
+    with sr.Microphone() as source:
+        audio = recognizer.listen(source)
+
+        try:
+            said = recognizer.recognize_google(audio)
+        except Exception as e:
+            print("Exception : ", str(e))
+
+    return said.lower()
+
+
+print(get_audio())
