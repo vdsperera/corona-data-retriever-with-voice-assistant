@@ -31,3 +31,10 @@ class Data:
             if(content['name'] == 'Deaths:'):
                 return content['value']
         return '0'
+
+    def get_country_data(self, country):
+        data = self.data['country']
+        for content in data:
+            if(content['name'].lower() == country.lower()):
+                return content
+        return '0'
