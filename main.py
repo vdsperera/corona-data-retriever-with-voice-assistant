@@ -1,5 +1,8 @@
 import requests
 import json
+import pyttsx3
+import speech_recognition as sr
+import re
 
 API_KEY = "tTRi3gZfzPyh"
 PROJECT_TOKEN = "tmpPtFoT03sJ"
@@ -38,3 +41,8 @@ class Data:
             if(content['name'].lower() == country.lower()):
                 return content
         return '0'
+
+def speak(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
