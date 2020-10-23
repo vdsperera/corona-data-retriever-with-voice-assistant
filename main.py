@@ -1,7 +1,6 @@
 import requests
 import json
 
-
 API_KEY = "tTRi3gZfzPyh"
 PROJECT_TOKEN = "tmpPtFoT03sJ"
 RUN_TOKEN = "tnGdovJgMXau"
@@ -26,3 +25,9 @@ class Data:
             if(content['name'] == 'Coronavirus Cases:'):
                 return content['value']
 
+    def get_total_deaths(self):
+        data = self.data['total']
+        for content in data:
+            if(content['name'] == 'Deaths:'):
+                return content['value']
+        return '0'
