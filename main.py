@@ -42,6 +42,12 @@ class Data:
                 return content
         return '0'
 
+data = Data(API_KEY, PROJECT_TOKEN, RUN_TOKEN)
+# print(data.data['country'])
+# print(data.get_total_cases())
+# print(data.get_total_deaths())
+print(data.get_country_data('sri Lanka'))
+
 def speak(text):
     engine = pyttsx3.init()
     engine.say(text)
