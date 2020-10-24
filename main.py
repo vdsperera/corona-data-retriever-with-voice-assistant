@@ -67,4 +67,34 @@ def get_audio():
     return said.lower()
 
 
-print(get_audio())
+# print(get_audio())
+
+def main():
+    print('Started')
+    data = Data(API_KEY, PROJECT_TOKEN, RUN_TOKEN)
+
+    PATTERNS = {
+        re.compile('[\w\s] + total + [\w\s] + cases') : data.get_total_cases,
+        re.compile('[\w\s] + total cases') : data.get_total_cases,
+        re.compile('[\w\s] + total + [\w\s] + deaths') : data.get_total_deaths,
+        re.compile('[\w\s] + total deaths') : data.get_total_deaths
+    }
+    # print(PATTERNS.items())
+    while True:
+        print('Listening')
+        text = get_audio()
+        result = None
+        for pattern, func in PATTERNS.items():
+            if pattern.match(text):
+                result = func()
+                break
+
+        if result:
+            print(text)
+            speak(text)
+
+        if text.find('stop'):
+            break
+        print(text)
+
+main()
