@@ -42,11 +42,11 @@ class Data:
                 return content
         return '0'
 
-data = Data(API_KEY, PROJECT_TOKEN, RUN_TOKEN)
+
 # print(data.data['country'])
 # print(data.get_total_cases())
 # print(data.get_total_deaths())
-print(data.get_country_data('sri Lanka'))
+# print(data.get_country_data('sri Lanka'))
 
 def speak(text):
     engine = pyttsx3.init()
@@ -57,8 +57,8 @@ def get_audio():
     recognizer = sr.Recognizer()
     said = ''
     with sr.Microphone() as source:
+        recognizer.adjust_for_ambient_noise(source)
         audio = recognizer.listen(source)
-
         try:
             said = recognizer.recognize_google(audio)
         except Exception as e:
