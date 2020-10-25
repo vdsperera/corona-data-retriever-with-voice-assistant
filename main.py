@@ -88,14 +88,17 @@ def main():
         for pattern, func in PATTERNS.items():
             if pattern.match(text):
                 result = func()
+                print(text)
                 break
 
         if result:
-            print(text)
-            speak(text)
+            print('pattern ' + text)
+            print(result)
+            speak(result)
 
         if text.find('stop'):
             break
         print(text)
 
 main()
+# print(get_audio())
