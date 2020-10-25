@@ -75,10 +75,10 @@ def main():
     data = Data(API_KEY, PROJECT_TOKEN, RUN_TOKEN)
 
     PATTERNS = {
-        re.compile('[\w\s] + total + [\w\s] + cases') : data.get_total_cases,
-        re.compile('[\w\s] + total cases') : data.get_total_cases,
-        re.compile('[\w\s] + total + [\w\s] + deaths') : data.get_total_deaths,
-        re.compile('[\w\s] + total deaths') : data.get_total_deaths
+        re.compile(r'[\w\s]+ total+ [\w\s]+ cases'): data.get_total_cases,
+        re.compile(r'[\w\s]+ total cases'): data.get_total_cases,
+        re.compile(r'[\w\s]+ total+ [\w\s]+ deaths'): data.get_total_deaths,
+        re.compile(r'[\w\s]+ total deaths'): data.get_total_deaths
     }
     # print(PATTERNS.items())
     while True:
