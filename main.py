@@ -4,6 +4,7 @@ import pyttsx3
 import speech_recognition as sr
 import re
 
+# parsehub info
 API_KEY = "tTRi3gZfzPyh"
 PROJECT_TOKEN = "tmpPtFoT03sJ"
 RUN_TOKEN = "tnGdovJgMXau"
@@ -23,27 +24,36 @@ class Data:
         self.data = json.loads(response.text)
 
     def get_total_cases(self):
-        data = self.data['total']
-        for content in data:
-            if(content['name'] == 'Coronavirus Cases:'):
-                return content['value']
+        total_data = self.data['total']
+        for item in total_data:
+            if(item['name'] == 'Coronavirus Cases:'):
+                return item['value']
 
     def get_total_deaths(self):
-        data = self.data['total']
-        for content in data:
-            if(content['name'] == 'Deaths:'):
-                return content['value']
+        total_data = self.data['total']
+        for item in total_data:
+            if(item['name'] == 'Deaths:'):
+                return item['value']
         return '0'
 
     def get_country_data(self, country):
-        data = self.data['country']
-        for content in data:
-            if(content['name'].lower() == country.lower()):
-                return content
+        countries_data = self.data['country']
+        for item in countries_data:
+            if(item['name'].lower() == country.lower()):
+                return item
         return '0'
 
 
+
+
+# data = Data(API_KEY, PROJECT_TOKEN, RUN_TOKEN)
+# country_list = ['A', 'B', 'C', 'D', 'A']
+# if 'sril lanka' in country_list:
+#     print('found')
+
+# print(country_list)
 # print(data.data['country'])
+# print(data.get_country_list())
 # print(data.get_total_cases())
 # print(data.get_total_deaths())
 # print(data.get_country_data('sri Lanka'))
