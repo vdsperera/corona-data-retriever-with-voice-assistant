@@ -67,14 +67,13 @@ def get_audio():
     recognizer = sr.Recognizer()
     said = ''
     with sr.Microphone() as source:
-        # recognizer.adjust_for_ambient_noise(source)
+        recognizer.adjust_for_ambient_noise(source)
         audio = recognizer.listen(source)
         try:
             said = recognizer.recognize_google(audio)
-            print('said')
+            print('recognised voice: ' + said)
         except Exception as e:
             print("Exception : ", str(e))
-    print('recog ' + said)
     return said.lower()
 
 
