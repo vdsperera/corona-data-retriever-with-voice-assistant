@@ -89,11 +89,33 @@ def main():
         re.compile(r'[\w\s]+ total+ [\w\s]+ deaths'): data.get_total_deaths,
         re.compile(r'[\w\s]+ total deaths'): data.get_total_deaths
     }
+
+    COUNTRY_PATTERNS = {
+        re.compile(r'[\w\s]+ cases+ [\w\s]'): lambda country: data.get_country_data(country)['total_cases'],
+        re.compile(r'[\w\s]+ deaths+ [\w\s]'): lambda country: data.get_country_data(country)['total_deaths']
+    }
+
+
+
     # print(PATTERNS.items())
     while True:
         print('Listening')
         text = get_audio()
         result = None
+        country_list = data.get_country_list()
+        
+        # check for country specific data
+        for pattern, func in COUNTRY_PATTERNS.items():
+            if pattern.match(text):
+                words = set(text.split(" "))
+                for country in country_list:
+                    if country in words:
+                        result = func(country)
+                        break                   
+                # print(text)
+                break
+
+        # check for general data
         for pattern, func in PATTERNS.items():
             if pattern.match(text):
                 result = func()
@@ -101,13 +123,14 @@ def main():
                 break
 
         if result:
-            print('pattern ' + text)
-            print(result)
+            # print('pattern ' + text)
+            print('Answer: '+ result)
             speak(result)
 
-        if text.find('stop'):
+        if text.find('stop') != -1:
             break
-        print(text)
+
+
 
 main()
 # print(get_audio())
