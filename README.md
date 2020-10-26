@@ -4,5 +4,7 @@
   * retrieving data from an API
   * recognizing voice using Google Speech Recognition
   * using Regular Exprestions(Regex)
+  * using lambda function
+    * https://www.guru99.com/python-lambda-function.html
 * Here you can refer solved problems
   * https://stackoverflow.com/questions/64520079/why-do-spaces-in-regular-expressions-relative-to-and-cause-issues
