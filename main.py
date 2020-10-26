@@ -43,7 +43,12 @@ class Data:
                 return item
         return '0'
 
-
+    def get_country_list(self):
+        countries_data = self.data['country']
+        country_list = []
+        for item in countries_data:
+            country_list.append(item['name'].lower())
+        return country_list
 
 
 # data = Data(API_KEY, PROJECT_TOKEN, RUN_TOKEN)
