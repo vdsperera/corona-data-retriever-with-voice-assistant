@@ -122,7 +122,7 @@ def main():
     # print(PATTERNS.items())
     while True:
         print('Listening')
-        text = input()
+        text = get_audio()
         result = None
         country_list = data.get_country_list()
 
