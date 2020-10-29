@@ -6,5 +6,6 @@
   * using Regular Exprestions(Regex)
   * using lambda functions
     * https://www.guru99.com/python-lambda-function.html
+  * using threading
 * Here you can refer solved problems
   * https://stackoverflow.com/questions/64520079/why-do-spaces-in-regular-expressions-relative-to-and-cause-issues
