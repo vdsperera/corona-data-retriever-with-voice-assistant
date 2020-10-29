@@ -139,15 +139,17 @@ def main():
                 print(text)
                 break
 
-        if result:
-            # print('pattern ' + text)
-            print('Answer: '+ result)
-            speak(result)
+        if text == 'update':
+            result = "Data is being updated and this may take a moment"
+            data.update_data()
 
         if text.find('stop') != -1:
             break
 
+        if result:
+            # print('pattern ' + text)
+            print('Answer: ' + result)
+            speak(result)
 
 
 main()
-# print(get_audio())
