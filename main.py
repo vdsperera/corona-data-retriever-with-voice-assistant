@@ -50,25 +50,37 @@ class Data:
             country_list.append(item['name'].lower())
         return country_list
 
+    def update_data(self):
+        response = requests.get(f"""
+        https://www.parsehub.com/api/v2/projects/
+        {self.project_token}/run
+        """, self.params)
 
-# data = Data(API_KEY, PROJECT_TOKEN, RUN_TOKEN)
-# country_list = ['A', 'B', 'C', 'D', 'A']
-# if 'sril lanka' in country_list:
-#     print('found')
+        def poll():
 
-# print(country_list)
-# print(data.data['country'])
-# print(data.get_country_list())
-# print(data.get_total_cases())
-# print(data.get_total_deaths())
-# print(data.get_country_data('sri Lanka'))
+            time.sleep(0.1)
+            old_data = self.data
+            while True:
+                new_data = self.get_data()
+                if new_data != old_data:
+                    self.data = new_data
+                    print('Data updated')
+                    break
+                time.sleep(5)
+
+        t = threading.Thread(target=poll)
+        t.start()
+
 
 def speak(text):
+
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait()
 
+
 def get_audio():
+
     recognizer = sr.Recognizer()
     said = ''
     with sr.Microphone() as source:
